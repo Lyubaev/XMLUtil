@@ -1,8 +1,22 @@
-<?php namespace Lyubaev\XMLUtil\Validator;
+<?php
+/**
+ * This file is part of the XMLUtil package.
+ *
+ * @link      https://github.com/Lyubaev/XMLUtil
+ * @copyright Copyright (c) 2015 Kirill Lyubaev
+ * @license   http://opensource.org/licenses/BSD-3-Clause BSD New
+ */
 
-use Lyubaev\XMLUtil\Exception\InvalidArgumentException;
+namespace Lyubaev\XMLUtil\Validator;
+
 use Lyubaev\XMLUtil\Exception\RuntimeException;
+use Lyubaev\XMLUtil\Exception\InvalidArgumentException;
 
+/**
+ * Class Relax
+ *
+ * @package XMLUtil
+ */
 class Relax implements ValidatorInterface
 {
     private $file;
@@ -40,7 +54,7 @@ class Relax implements ValidatorInterface
         );
     }
 
-    public function source($source)
+    public function load($source)
     {
         if (is_string($source)) {
             $this->source = $source;
@@ -69,16 +83,22 @@ class Relax implements ValidatorInterface
 
     public function isValid(\DOMDocument $object)
     {
+        $result = null;
+
         set_error_handler([$this, 'errorHandler']);
         switch ($this->getSourceType()) {
             case self::$setFile:
-                return $object->relaxNGValidate($this->file);
+                $result = $object->relaxNGValidate($this->file);
             case self::$setSource:
-                return $object->relaxNGValidateSource($this->source);
-            default:
-                throw new RuntimeException('Validation scheme is not loaded!');
+                $result = $object->relaxNGValidateSource($this->source);
         }
         restore_error_handler();
+
+        if (null === $result) {
+            throw new RuntimeException('Validation scheme is not loaded!');
+        }
+
+        return $result;
     }
 
     public function getMessages()

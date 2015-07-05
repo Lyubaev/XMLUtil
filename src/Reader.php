@@ -1,8 +1,8 @@
 <?php
 /**
- * XMLUtil
+ * This file is part of the XMLUtil package.
  *
- * @author    Kirill Lyubaev <lubaev.ka@gmail.com>
+ * @link      https://github.com/Lyubaev/XMLUtil
  * @copyright Copyright (c) 2015 Kirill Lyubaev
  * @license   http://opensource.org/licenses/BSD-3-Clause BSD New
  */
@@ -15,6 +15,11 @@ use Lyubaev\XMLUtil\Exception\InvalidArgumentException;
 use Lyubaev\XMLUtil\Exception\RuntimeException;
 use Lyubaev\XMLUtil\Exception\DomainException;
 
+/**
+ * Class Reader
+ *
+ * @package XMLUtil
+ */
 class Reader
 {
     const DEF_DEPTH = 1;

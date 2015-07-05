@@ -1,5 +1,19 @@
-<?php namespace Lyubaev\XMLUtil\Validator;
+<?php
+/**
+ * This file is part of the XMLUtil package.
+ *
+ * @link      https://github.com/Lyubaev/XMLUtil
+ * @copyright Copyright (c) 2015 Kirill Lyubaev
+ * @license   http://opensource.org/licenses/BSD-3-Clause BSD New
+ */
 
+namespace Lyubaev\XMLUtil\Validator;
+
+/**
+ * Class Schema
+ *
+ * @package XMLUtil
+ */
 class Schema implements ValidatorInterface
 {
     private $file;
@@ -18,7 +32,7 @@ class Schema implements ValidatorInterface
         $this->isFileOrSource = self::$setFile;
     }
 
-    public function source($source, $flag = 0)
+    public function load($source, $flag = 0)
     {
         $this->source = $source;
         $this->flag =$flag;
