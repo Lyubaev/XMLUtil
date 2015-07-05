@@ -1,0 +1,6 @@
+/.idea/
+/lib/
+/public/
+/rnc2rng/
+/vendor/
+composer.lock
