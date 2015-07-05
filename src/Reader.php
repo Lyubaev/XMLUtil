@@ -138,7 +138,7 @@ class Reader
      *
      * @param string $source
      */
-    public function xml($source)
+    public function load($source)
     {
         if (is_string($source)) {
             $this->source = $source;
